@@ -5,6 +5,6 @@ import cn.akirayimi.cgb.robber.service.filter.RoleFilter;
 import java.util.List;
 
 public interface IProductService {
-    public void obtainRole(List<RoleFilter> filter);
+    public void obtainRole(RoleFilter... filter);
 
 }

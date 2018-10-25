@@ -1,10 +1,21 @@
 package cn.akirayimi.cgb.robber.entity;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
 /**
  * 角色信息
  */
+@Entity
+@Table(name = "role")
 public class Role {
+//    private Long id;
     // 角色订单号
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="role_id_seq")
+    @SequenceGenerator(name="role_id_seq", sequenceName="role_id_seq", allocationSize = 1)
+    private Long id;
+
     private String gameOrdersn;
     // 售价，单位：分
     private Long price;
@@ -25,14 +36,66 @@ public class Role {
     // 过期时间
     private Long expireRemainSeconds;
 
-    //============================= 下面的属性要手动添加=============================
-    // 评分
-    private Integer score;
     // 门派
-    private Integer schoolName;
+    private Integer school;
     // 等级
     private String levelDesc;
-    private Integer level;
+
+    private String descSumup;
+
+    private String formatEquipName;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getSchool() {
+        return school;
+    }
+
+    public void setSchool(Integer school) {
+        this.school = school;
+    }
+
+    public String getLevelDesc() {
+        return levelDesc;
+    }
+
+    public void setLevelDesc(String levelDesc) {
+        this.levelDesc = levelDesc;
+    }
+
+    public String getDescSumup() {
+        return descSumup;
+    }
+
+    public void setDescSumup(String descSumup) {
+        this.descSumup = descSumup;
+    }
+
+    public String getFormatEquipName() {
+        return formatEquipName;
+    }
+
+    public void setFormatEquipName(String formatEquipName) {
+        this.formatEquipName = formatEquipName;
+    }
+
+
+    private LocalDateTime createTime;
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
 
     public String getGameOrdersn() {
         return gameOrdersn;
@@ -112,21 +175,5 @@ public class Role {
 
     public void setExpireRemainSeconds(Long expireRemainSeconds) {
         this.expireRemainSeconds = expireRemainSeconds;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Integer getSchoolName() {
-        return schoolName;
-    }
-
-    public void setSchoolName(Integer schoolName) {
-        this.schoolName = schoolName;
     }
 }

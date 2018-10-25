@@ -12,3 +12,8 @@ spring:
       url: jdbc:postgresql://123.207.187.219:54321/cbg
       username: postgres
       password: password
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: ALWAYS
