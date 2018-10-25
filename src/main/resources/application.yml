@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+      format_sql: true
+      dialect: org:hibernate:dialect:PostgreSQLDialect
+      ddl-auto: none
+    show-sql: true
+  datasource:
+      url: jdbc:postgresql://123.207.187.219:54321/cbg
+      username: postgres
+      password: password
