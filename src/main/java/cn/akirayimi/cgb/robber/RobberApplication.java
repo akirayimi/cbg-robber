@@ -1,5 +1,6 @@
 package cn.akirayimi.cgb.robber;
 
+import cn.akirayimi.cgb.robber.service.RestTemplateWithCookies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +13,8 @@ public class RobberApplication {
         SpringApplication.run(RobberApplication.class, args);
     }
 
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+//    @Bean
+//    RestTemplate restTemplate() {
+//        return new RestTemplateWithCookies();
+//    }
 }

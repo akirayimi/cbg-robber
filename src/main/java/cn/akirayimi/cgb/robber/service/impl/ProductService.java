@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ProductService implements IProductService {
@@ -33,13 +30,14 @@ public class ProductService implements IProductService {
     @Autowired
     private RoleRepo roleRepo;
     @Override
-    public void obtainRole(RoleFilter... filters) {
+    public List<Role> obtainRole(RoleFilter... filters) {
         ObjectNode result = restTemplate.getForObject(CbgUrlConst.ROLE_SEARCH_URL, ObjectNode.class);
         int code = result.get("status").asInt();
         if (1 != code){
             throw new RuntimeException("获取角色列表失败");
         }
         Iterator<JsonNode> nodes = result.get("result").elements();
+        List<Role> roles = new ArrayList<>();
         while (nodes.hasNext()){
             JsonNode node = nodes.next();
 
@@ -48,6 +46,8 @@ public class ProductService implements IProductService {
             role.setCreateTime(LocalDateTime.now());
             BeanUtils.copyProperties(otherInfo, role);
             roleRepo.save(role);
+            roles.add(role);
         }
+        return roles;
     }
 }
